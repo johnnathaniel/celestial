@@ -1,6 +1,11 @@
 .App {
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
+
 
 .App-logo {
   height: 40vmin;
@@ -35,4 +40,68 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+body {
+  background-color: #f2f2f2;
+}
+
+thead {
+  background-color: #8C8C8C;
+}
+
+thead th {
+  color: white;
+}
+
+tbody {
+  background-color: white;
+}
+
+table,
+table td {
+  color: #0D0D0D;
+}
+.planets-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: "Monaco", monospace;
+}
+
+.planets-table th {
+  border-top: 2px solid #f2f2f2;
+  padding: 8px;
+  line-height: 56px;
+  padding-left: 16px;
+  padding-right: 16px;
+  text-align: left;
+}
+.planets-table th:nth-child(3),
+.planets-table th:nth-child(5),
+.planets-table th:nth-child(6){
+text-align: center;
+}
+.planets-table td {
+  border-top: 2px solid #f2f2f2;
+  border-bottom: 2px solid #f2f2f2;
+  padding: 8px;
+  line-height: 56px;
+  padding-left: 16px;
+  padding-right: 16px;
+  text-align: left
+}
+
+.planets-table td:nth-child(3){
+  text-align: center;
+  }
+
+.planets-table td:nth-child(5),
+.planets-table td:nth-child(6) {
+  text-align: right;  /* Align column data right */
+}
+.planets-table td:first-child a:link,
+.planets-table td:first-child a:visited {
+  color: #91CDF2;
+  font-weight: bold;
+  text-decoration: none;
 }
