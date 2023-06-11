@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Lottie from 'react-lottie-player';
+import lottieJson from './loading.json'; 
 import './App.css';
 
 const App = () => {
@@ -34,36 +36,50 @@ const App = () => {
     return formatNumber(Math.round(waterArea));
   }
   
+  const LoadingAnimationWithText = () => (
+    <div className="loading-container">
+      <Lottie
+        animationData={lottieJson}
+        play
+        className="loading-animation"
+      />
+      <p className="loading-text">
+        Loading...
+      </p>
+    </div>
+  );
 
   return (
     <div className="App">
       <h1>Star Wars Planets</h1>
-      {loading && <p>Loading...</p>}
+      {loading && <LoadingAnimationWithText />}
       {error && <p>An error occurred. Please try again later.</p>}
-      <table className="planets-table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Climate</th>
-            <th>Residents</th>
-            <th>Terrain</th>
-            <th>Population</th>
-            <th>Surface Water Area (km²)</th>
-          </tr>
-        </thead>
-        <tbody>
-          {planets.map((planet, index) => (
-            <tr key={index}>
-              <td><a href={planet.url} target="_blank" rel="noreferrer">{planet.name}</a></td>
-              <td>{planet.climate}</td>
-              <td>{planet.residents.length}</td>
-              <td>{planet.terrain}</td>
-              <td>{formatNumber(planet.population)}</td>
-              <td>{calcSurfaceWaterArea(planet.diameter, planet.surface_water)}</td>
+      {!loading && !error &&
+        <table className="planets-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Climate</th>
+              <th># Residents</th>
+              <th>Terrain</th>
+              <th>Population</th>
+              <th>Surface Area (km²)</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {planets.map((planet, index) => (
+              <tr key={index}>
+                <td><a href={planet.url} target="_blank" rel="noreferrer">{planet.name}</a></td>
+                <td>{planet.climate}</td>
+                <td>{planet.residents.length}</td>
+                <td>{planet.terrain}</td>
+                <td>{formatNumber(planet.population)}</td>
+                <td>{calcSurfaceWaterArea(planet.diameter, planet.surface_water)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      }
     </div>
   );
 }
